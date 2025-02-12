@@ -176,7 +176,7 @@ class DockerParser(ParserBase):
         environ = self.parse_env(line)
 
         # Add to global environment, run during install
-        self.recipe[self.active_layer].install += environ
+        self.recipe[self.active_layer].install += [ f"export {env}" for env in environ ] 
 
         # Also define for global environment
         self.recipe[self.active_layer].environ += environ
